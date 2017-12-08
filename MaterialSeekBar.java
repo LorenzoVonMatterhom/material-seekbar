@@ -1,4 +1,4 @@
-package com.cats.timemanager;
+package com.yourname.yourapp;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,8 +13,6 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.SeekBar;
-
-import com.cats.timemanager.utilities.TimeValueFormatter;
 
 /**
  * Created by IlToro on 06/12/2017.
@@ -60,7 +58,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
             public void onAnimationStart(Drawable drawable) {
                 super.onAnimationStart(drawable);
                 isTextVisible = false;
-                Log.i("CATs", "AnimationBackwards:FALSE");
+                Log.i("UNUSEFULLOG", "AnimationBackwards:FALSE");
             }
         });
         timeLimitPassedMoreTimeSeekBarThumb.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
@@ -69,7 +67,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 super.onAnimationEnd(drawable);
                 if (thisSeekbar.getThumb() == timeLimitPassedMoreTimeSeekBarThumb) {
                     isTextVisible = true;
-                    Log.i("CATs", "AnimationForwards:TRUE");
+                    Log.i("UNUSEFULLOG", "AnimationForwards:TRUE");
                 }
             }
         });
@@ -83,7 +81,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
             public void onStartTrackingTouch(SeekBar seekBar) {
                 thisSeekbar.setThumb(timeLimitPassedMoreTimeSeekBarThumb);
                 timeLimitPassedMoreTimeSeekBarThumb.start();
-                Log.i("CATs", "StartTrackingTouch:");
+                Log.i("UNUSEFULLOG", "StartTrackingTouch:");
             }
 
             @Override
@@ -91,14 +89,14 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 thisSeekbar.setThumb(timeLimitPassedMoreTimeSeekBarThumbBackwards);
                 timeLimitPassedMoreTimeSeekBarThumbBackwards.start();
                 isTextVisible = false;
-                Log.i("CATs", "StopTrackingTouch:FALSE");
+                Log.i("UNUSEFULLOG", "StopTrackingTouch:FALSE");
             }
         });
     }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        String progressText = new TimeValueFormatter().getHHMMSS(getProgress()*10*60*1000);
+        String progressText = (String)/*Write your logic here to change the value format (%, h-m-s, $...)*/getProgress();
         Rect bounds = new Rect();
         mTextPaint.getTextBounds(progressText, 0, progressText.length(), bounds);
 
@@ -106,7 +104,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
         float normalizedProgress = (float) getProgress()/getMax();
         float thumbX = getPaddingLeft()+width*normalizedProgress;
         float thumbY = this.getHeight()-5*getResources().getDimensionPixelSize(R.dimen.seekbar_thumb_text);
-        mTextPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.seekbar_thumb_text)-getResources().getDimensionPixelSize(R.dimen.dp1)*(progressText.length()));
+        mTextPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.seekbar_thumb_text));
         if (isTextVisible) {
             canvas.drawText(progressText, thumbX, thumbY, mTextPaint);
         }
