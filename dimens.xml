@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="seekbar_thumb_text">18dp</dimen>
+</resources>
