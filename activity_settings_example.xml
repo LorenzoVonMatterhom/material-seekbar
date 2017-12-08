@@ -35,7 +35,7 @@
                 android:id="@+id/time_limit_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:paddingTop="100dp"
+                android:paddingTop="100dp" //NOTE: layout_height and paddingTop are necessary since my drawable thumb is 200dpX200dp and most of seekbars are 20dp: in this way you cut all the transparent background below it.
                 android:max="30"
                 android:thumb="@drawable/seekbar_thumb_final"
                 android:thumbTint="@color/accent"
