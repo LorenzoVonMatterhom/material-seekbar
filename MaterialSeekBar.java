@@ -34,16 +34,21 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
     VectorDrawableCompat seekBarThumbNotAnimated;
     final float scale = getContext().getResources().getDisplayMetrics().density;
 
+    //IS THIS METHOD EVER USED?
     public MaterialSeekBar(Context context) {
         super(context);
         isTextVisible = false;
+
         mTextPaint = new TextPaint();
         mTextPaint.setColor(getResources().getColor(R.color.pink_800));
         mTextPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.seekbar_thumb_text));
         mTextPaint.setTypeface(Typeface.DEFAULT_BOLD);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
+
         final SeekBar thisSeekbar = this;
+
         seekBarThumbNotAnimated = VectorDrawableCompat.create(getResources(), R.drawable.seekbar_thumb_vector, null);
+
         seekBarThumb = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_animation);
         seekBarThumb.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
             @Override
@@ -55,7 +60,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 }
             }
         });
-        seekBarThumbBackwards = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_backwards_animation);
+        seekBarThumbBackwards = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_animation_backward);
         seekBarThumbBackwards.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
             @Override
             public void onAnimationStart(Drawable drawable) {
@@ -69,8 +74,11 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 thisSeekbar.setThumb(seekBarThumbNotAnimated);
                 isTextVisible = false;
                 Log.i("CATs", "AnimationBackwards:FALSE");
+                //set height to 20dp
                 thisSeekbar.getLayoutParams().height = (int)(20*scale+0.5f);
+                //set padding to n 0 n 0
                 thisSeekbar.setPadding(thisSeekbar.getPaddingLeft(), 0, thisSeekbar.getPaddingRight(), 0);
+                //set margin top to 0
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) thisSeekbar.getLayoutParams();
                 params.topMargin = 0;
                 thisSeekbar.requestLayout();
@@ -80,18 +88,22 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
         this.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-
+                //here you can change progress if you want (at your own risk :) )
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 thisSeekbar.setThumb(seekBarThumb);
                 seekBarThumb.start();
+                //set height to 120dp
                 thisSeekbar.getLayoutParams().height = (int)(120*scale+0.5f);
+                //set padding to n 100dp n 0
                 thisSeekbar.setPadding(thisSeekbar.getPaddingLeft(), (int)(100*scale+0.5f), thisSeekbar.getPaddingRight(), 0);
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) thisSeekbar.getLayoutParams();
                 params.topMargin = -(int)(100*scale+0.5f);
                 thisSeekbar.requestLayout();
+                //set margin top -100dp: do not bother me, i know it's a bad practice, if you have a
+                //suggetion just open an issue, but i do not promise i will reply :)git
                 Log.i("CATs", "StartTrackingTouch:");
             }
 
@@ -104,19 +116,22 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
             }
         });
     }
-
+    //IS THIS METHOD EVER USED?
     public MaterialSeekBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         isTextVisible = false;
+
         mTextPaint = new TextPaint();
         mTextPaint.setColor(getResources().getColor(R.color.pink_800));
         mTextPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.seekbar_thumb_text));
         mTextPaint.setTypeface(Typeface.DEFAULT_BOLD);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
-        final SeekBar thisSeekbar = this;
-        seekBarThumbNotAnimated = VectorDrawableCompat.create(getResources(), R.drawable.seekbar_thumb_vector, null);
-        seekBarThumb = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_animation);
 
+        final SeekBar thisSeekbar = this;
+
+        seekBarThumbNotAnimated = VectorDrawableCompat.create(getResources(), R.drawable.seekbar_thumb_vector, null);
+
+        seekBarThumb = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_animation);
         seekBarThumb.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
             @Override
             public void onAnimationEnd(Drawable drawable) {
@@ -127,7 +142,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 }
             }
         });
-        seekBarThumbBackwards = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_backwards_animation);
+        seekBarThumbBackwards = AnimatedVectorDrawableCompat.create(context, R.drawable.seekbar_thumb_animation_backward);
         seekBarThumbBackwards.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
             @Override
             public void onAnimationStart(Drawable drawable) {
@@ -141,8 +156,11 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 thisSeekbar.setThumb(seekBarThumbNotAnimated);
                 isTextVisible = false;
                 Log.i("CATs", "AnimationBackwards:FALSE");
+                //set height to 20dp
                 thisSeekbar.getLayoutParams().height = (int)(20*scale+0.5f);
+                //set padding to n 0 n 0
                 thisSeekbar.setPadding(thisSeekbar.getPaddingLeft(), 0, thisSeekbar.getPaddingRight(), 0);
+                //set margin top to 0
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) thisSeekbar.getLayoutParams();
                 params.topMargin = 0;
                 thisSeekbar.requestLayout();
@@ -152,18 +170,22 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
         this.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-
+                //here you can change progress if you want (at your own risk :) )
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 thisSeekbar.setThumb(seekBarThumb);
                 seekBarThumb.start();
+                //set height to 120dp
                 thisSeekbar.getLayoutParams().height = (int)(120*scale+0.5f);
+                //set padding to n 100dp n 0
                 thisSeekbar.setPadding(thisSeekbar.getPaddingLeft(), (int)(100*scale+0.5f), thisSeekbar.getPaddingRight(), 0);
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) thisSeekbar.getLayoutParams();
                 params.topMargin = -(int)(100*scale+0.5f);
                 thisSeekbar.requestLayout();
+                //set margin top -100dp: do not bother me, i know it's a bad practice, if you have a
+                //suggetion just open an issue, but i do not promise i will reply :)git
                 Log.i("CATs", "StartTrackingTouch:");
             }
 
@@ -245,7 +267,7 @@ public class MaterialSeekBar extends android.support.v7.widget.AppCompatSeekBar 
                 params.topMargin = -(int)(100*scale+0.5f);
                 thisSeekbar.requestLayout();
                 //set margin top -100dp: do not bother me, i know it's a bad practice, if you have a
-                //suggetion just open an issue, but i do not promise i will reply :)
+                //suggetion just open an issue, but i do not promise i will reply :)git
                 Log.i("CATs", "StartTrackingTouch:");
             }
 
