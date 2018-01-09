@@ -1,4 +1,4 @@
-package com.cats.timemanager;
+package com.yourname.yourapp;
 
 import android.content.Context;
 import android.graphics.Canvas;
